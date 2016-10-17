@@ -1,0 +1,4 @@
+#!/bin/bash
+
+OUTFILE=`basename --suffix '.md' "$1"`.html
+smart_quotes < $1 | markdown | sed '/^\s*$/d' > $OUTFILE
