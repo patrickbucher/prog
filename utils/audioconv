@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# usage:    audioconv [source format] [target format]
+# example:  audioconv mp3 opus
+
+if [ -z "$1" ]; then
+    echo "no input format given"
+    exit
+fi
+if [ -z "$2" ]; then
+    echo "no output format given"
+    exit
+fi
+
+ext="$2"
+case $2 in
+    'opushigh')
+        out_lib='libopus'
+        quality='-b:a 128k'
+        ext='opus'
+        ;;
+    'opus')
+        out_lib='libopus'
+        quality='-b:a 96k'
+        ;;
+    'opuslow')
+        out_lib='libopus'
+        quality='-b:a 64k'
+        ext='opus'
+        ;;
+    'ogg')
+        out_lib='libvorbis'
+        quality='-qscale:a 6'
+        ;;
+    'mp3')
+        out_lib='libmp3lame'
+        quality='-b:a 192k'
+        ;;
+    'm4a')
+        out_lib='libfdk_aac'
+        quality='-b:a 192k'
+        ;;
+    'flac')
+        out_lib='flac'
+        quality=''
+        ;;
+    *)
+        echo "cannot handle output format $2"
+        exit
+        ;;
+esac
+
+mkdir -p $ext
+rm -f $ext/*
+
+OLD_IFS="$IFS"
+IFS=$'\n'
+for in_file in *.$1; do
+    out_file="$(echo "$in_file" | tr -d '()' | tr -d "'")"
+    out_file="$(echo "$out_file" | sed 's/ - /_/g')"
+    out_file="$(echo "$out_file" | tr ' ' '-')"
+    out_file="$(echo "$out_file" | tr '[:upper:]' '[:lower:]')"
+    out_file="$ext/$(basename -s ".$1" -- "$out_file").$ext"
+    IFS="$OLD_IFS"
+    ffmpeg -i "$in_file" -map 0:a -c:a $out_lib $quality "$out_file" 2> ffmpeg.log
+done

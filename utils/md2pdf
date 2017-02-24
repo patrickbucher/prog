@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Usage: md2pdf [input] [title]
+
+input="$1"
+output=`basename -s '.md' "$1"`.pdf
+title="$2"
+
+pandoc -S -s \
+    --variable title="$title" \
+    --variable author="Patrick Bucher" \
+    --variable date=`date +%d.%m.%Y` \
+    --variable papersize=a4 \
+    --variable documentclass=scrartcl \
+    --variable classoption=11pt \
+    --variable fontfamily=ebgaramond,helvet \
+    --variable language=ngerman \
+    $input -o $output
