@@ -14,5 +14,5 @@ pandoc -S -s \
     --variable documentclass=scrartcl \
     --variable classoption=11pt \
     --variable fontfamily=ebgaramond,helvet \
-    --variable language=ngerman \
+    --variable lang=de \
     $input -o $output
