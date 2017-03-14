@@ -6,7 +6,7 @@ def is_prime(number):
     cached = primes.get(number)
     if cached != None:
         return cached
-    if number <= 2:
+    if number <= 1:
         primes[number] = False
         return primes[number]
     for i in range(2, number // 2 + 1):
