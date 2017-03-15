@@ -16,12 +16,14 @@ def is_prime(number):
     primes[number] = True
     return primes[number]
 
+
 def get_primes(lower_in, upper_ex):
     primes = []
     for i in range(lower_in, upper_ex):
         if is_prime(i):
             primes.append(i)
     return primes
+
 
 if __name__ == '__main__':
     for i in range(1, 100):

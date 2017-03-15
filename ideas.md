@@ -1,3 +1,2 @@
-- calculate GCD (greatest common divisor) and LCM (least common multiple)
 - calculate password strength
 - multiply two matrices
