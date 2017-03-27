@@ -5,21 +5,31 @@ import urllib3
 import sys
 import math
 
-base_url = 'https://de.openrussian.org/list/all?start='
-counter = 0
+def fail():
+    usage = sys.argv[0] + " [number of words] [nouns/verbs/adjectives]"
+    sys.exit("usage: " + usage)
 
 http = urllib3.PoolManager()
 
 try:
     words = int(sys.argv[1])
+    nargs = len(sys.argv)
+    word_type = "all"
+    if nargs >= 3 and sys.argv[2] in ["nouns", "verbs", "adjectives"]:
+        word_type = sys.argv[2]
 except:
-    sys.exit("usage: openrussianrip.py [number of words to rip]")
+    fail()
 
+file_name = 'top-%d-%s.txt' % (words, word_type)
+target = open(file_name, 'w')
+target.truncate()
+
+base_url = 'https://de.openrussian.org/list/%s?start=' % word_type
+offset = 0
 last_page = int(math.ceil(words / 50))
-
 for i in range(1, last_page + 1):
-    url = base_url + str(counter)
-    counter += 50
+    url = base_url + str(offset)
+    offset += 50
     response = http.request('GET', url)
     soup = BeautifulSoup(response.data, "html.parser")
     tables = soup.findAll('table', { 'class' : 'wordlist' })
@@ -38,4 +48,6 @@ for i in range(1, last_page + 1):
                 else:
                     ruText = ruCell.text
                     
-                print("%s;%s" % (deText, ruText))
+                target.write("%s;%s\n" % (deText, ruText))
+
+target.close()

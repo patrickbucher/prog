@@ -1,0 +1,100 @@
+челове́к;Mensch, Person, Mann
+вре́мя;Zeit, Zeitform, Stunde, Uhrzeit
+рука́;Hand, Arm
+де́ло;Sache, Angelegenheit, Arbeit, Akte
+раз;Mal, mal, eins, wenn, da
+глаз;Auge
+день;Tag
+жизнь;Leben
+тут;hier, da
+голова́;Kopf, Hirn, Gehirn, Gedanken
+друг;Freund
+дом;Haus, Gebäude, Zuhause, Heim
+сло́во;Wort, Vokabel, Rede, Ansprache, Versprechen
+ме́сто;Platz, Ort, Stelle, Sitzplatz, Koje, Gepäckstück
+лицо́;Gesicht, Person, die rechte Seite
+сторона́;Seite, Richtung, Partei
+нога́;Fuß, Bein
+рабо́та;Arbeit, Werk
+пе́ред;vor, Vorderteil, Vorderseite
+дверь;Tür
+коне́ц;Ende, Schluss
+го́род;Stadt
+го́лос;Stimme
+час;Stunde, Uhr
+уж;wirklich
+земля́;Erde, Festland, Land, Boden, Bundesland
+си́ла;Kraft, Stärke, Macht, Gewalt
+вода́;Wasser
+слу́чай;Vorfall, Zwischenfall, Erlebnis, Zufall, Gelegenheit, Anlaß, Fall
+стол;Tisch, Essen, Kost, Büro, Abteilung
+маши́на;Maschine, Auto, Wagen, Kraftwagen
+мир;Welt, Erde, Frieden
+ночь;Nacht
+же́нщина;Frau, Dame
+ребёнок;Kind
+вид;Aussehen, das Äußere, Miene, Zustand, Form, Art, Aspekt, Aktionsart, Sicht, Aussicht
+оте́ц;Vater
+вопро́с;Frage, Angelegenheit, Sache, Problem
+ряд;Reihe, eine Reihe von, eine Anzahl von
+страна́;Land, Staat
+война́;Krieg
+де́ньги;Geld
+мину́та;Minute, Augenblick
+това́рищ;Freund, Kamerad, Genosse, Genossin, Kollege, Kollegin
+пра́вда;Wahrheit, es ist wahr, es stimmt, wirklich, tatsächlich
+часть;Teil, Abteilung, Einheit, Truppenteil
+доро́га;Weg, Straße, Reise
+свет;Licht, Welt
+жена́;Ehefrau, Frau
+окно́;Fenster
+мать;Mutter
+Москва́;Moskau, die Moskwa
+у́лица;Straße
+ко́мната;Zimmer
+у́тро;Morgen
+ве́чер;Abend, Abendveranstaltung
+сего́дня;heute
+душа́;Seele
+кни́га;Buch
+плечо́;Schulter, Achsel
+пол;Fußboden, Geschlecht
+наро́д;Volk, Menschen
+взгляд;Blick, Meinung, Ansicht
+исто́рия;Geschichte
+бог;Gott
+па́лец;Finger, Zeh, Zehe
+и́мя;Name, Vorname, Ruf, Nomen
+мысль;Gedanke, Idee
+разгово́р;Gespräch, Unterhaltung
+пра́во;Recht, wirklich, wahrhaftig
+сын;Sohn
+путь;Weg, Gleis, Eisenbahnlinie, Reise, Fahrt
+ты́сяча;tausend, Tausend
+пора́;Zeit, Jahreszeit
+по́ра;Zeit, Jahreszeit
+стена́;Wand, Mauer
+спина́;Rücken
+ме́сяц;Monat, Mond, junger zunehmender Mond
+те́ло;Körper
+язы́к;Sprache, Zunge
+ма́ма;Mama, Mutti
+стари́к;der Alte, alter Mann
+смерть;Tod
+власть;Macht
+ма́льчик;Junge, Knabe
+о́браз;Art, Weise, Gestalt, Figur
+письмо́;Brief, Schreiben
+отноше́ние;Haltung, Einstellung, Verhältnis, Verhalten, Behandlung, Beziehung
+се́рдце;Herz
+нача́льник;Chef, der Vorgesetzte, Leiter
+де́вушка;Mädchen, Fräulein, junge Frau, Partnerin, Freundin
+солда́т;Soldat
+не́бо;Himmel
+систе́ма;System
+во́здух;Luft
+брат;Bruder
+кварти́ра;Wohnung
+генера́л;General
+кровь;Blut
+шаг;Schritt
