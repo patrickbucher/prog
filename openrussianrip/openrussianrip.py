@@ -2,16 +2,22 @@
 
 from bs4 import BeautifulSoup
 import urllib3
+import sys
+import math
 
 base_url = 'https://de.openrussian.org/list/all?start='
 counter = 0
 
 http = urllib3.PoolManager()
 
-words = 30000
-last_page = int(words / 50) + 1
+try:
+    words = int(sys.argv[1])
+except:
+    sys.exit("usage: openrussianrip.py [number of words to rip]")
 
-for i in range(1, last_page):
+last_page = int(math.ceil(words / 50))
+
+for i in range(1, last_page + 1):
     url = base_url + str(counter)
     counter += 50
     response = http.request('GET', url)
@@ -32,4 +38,4 @@ for i in range(1, last_page):
                 else:
                     ruText = ruCell.text
                     
-                print(numberCell.text, deText, ruText)
+                print("%s;%s" % (deText, ruText))
