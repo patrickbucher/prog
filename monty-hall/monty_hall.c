@@ -2,25 +2,32 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define GAMES 1000000
 #define DOORS 3
 
-#define GOAT 'Z'
+#define GOAT 'G'
 #define CAR 'C'
 
+char **init_games(int, int);
 int random_number(int, int);
+void fail(char *);
 
 int main(int argc, char *argv[])
 {
-    char games[GAMES][DOORS];
+    char **games = NULL;
+    int n_games = 0;
     int game, door, car;
     int pick, open, chance;
     int kept = 0, changed = 0;
     int win_keep = 0, win_change = 0;
 
-    srand(time(NULL));
+    if (argc < 2 || (n_games = atoi(argv[1])) < 1) {
+        fail("usage: monty_hall [number of games]");
+    }
 
-    for (game = 0; game < GAMES; game++) {
+    srand((unsigned int)time(NULL));
+
+    games = init_games(n_games, DOORS);
+    for (game = 0; game < n_games; game++) {
         for (door = 0; door < DOORS; door++) {
             games[game][door] = GOAT;
         }
@@ -56,13 +63,44 @@ int main(int argc, char *argv[])
         }
     }
 
-    printf("%d games with %d doors played.\n", GAMES, DOORS);
+    printf("%d games with %d doors played.\n", n_games, DOORS);
     printf("%d times kept and %d times won (%d%%).\n",
         kept, win_keep, (int)((float)win_keep / kept * 100));
     printf("%d times changed and %d times won (%d%%).\n",
         changed, win_change, (int)((float)win_change / changed * 100));
 
+    for (game = 0; game < n_games; game++) {
+        free(games[game]);
+    }
+    free(games);
+
     return 0;
+}
+
+char **init_games(int n_games, int doors)
+{
+    int game;
+    char **games;
+
+    games = (char**)malloc(sizeof(char*) * n_games);
+    if (games == NULL) {
+        fail("cannot allocate memory for games");
+    }
+
+    for (game = 0; game < n_games; game++) {
+        games[game] = (char*)malloc(sizeof(char) * doors);
+        if (games[game] == NULL) {
+            fail("cannot allocate memory for doors");
+        }
+    }
+
+    return games;
+}
+
+void fail(char *msg)
+{
+    fprintf(stderr, "%s\n", msg);
+    exit(EXIT_FAILURE);
 }
 
 int random_number(int min_in, int max_ex)
