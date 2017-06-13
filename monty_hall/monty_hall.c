@@ -7,7 +7,8 @@
 #define GOAT 'G'
 #define CAR 'C'
 
-char **init_games(int, int);
+char **alloc_games(int, int);
+void free_games(char **, int);
 int random_number(int, int);
 void fail(char *);
 
@@ -19,6 +20,7 @@ int main(int argc, char *argv[])
     int pick, open, chance;
     int kept = 0, changed = 0;
     int win_keep = 0, win_change = 0;
+    int win_keep_percent = 0, win_change_percent = 0;
 
     if (argc < 2 || (n_games = atoi(argv[1])) < 1) {
         fail("usage: monty_hall [number of games]");
@@ -26,7 +28,7 @@ int main(int argc, char *argv[])
 
     srand((unsigned int)time(NULL));
 
-    games = init_games(n_games, DOORS);
+    games = alloc_games(n_games, DOORS);
     for (game = 0; game < n_games; game++) {
         for (door = 0; door < DOORS; door++) {
             games[game][door] = GOAT;
@@ -63,26 +65,35 @@ int main(int argc, char *argv[])
         }
     }
 
+    if (kept > 0) {
+        win_keep_percent = (int)((float)win_keep / kept * 100);
+    }
+    if (changed > 0) {
+        win_change_percent = (int)((float)win_change / changed * 100);
+    }
+
     printf("%d games with %d doors played.\n", n_games, DOORS);
     printf("%d times kept and %d times won (%d%%).\n",
-        kept, win_keep, (int)((float)win_keep / kept * 100));
+        kept, win_keep, win_keep_percent);
     printf("%d times changed and %d times won (%d%%).\n",
-        changed, win_change, (int)((float)win_change / changed * 100));
+        changed, win_change, win_change_percent);
 
-    for (game = 0; game < n_games; game++) {
-        free(games[game]);
-    }
-    free(games);
+    free_games(games, n_games);
 
     return 0;
 }
 
-char **init_games(int n_games, int doors)
+int random_number(int min_in, int max_ex)
+{
+    return rand() % (max_ex - min_in) + min_in;
+}
+
+char **alloc_games(int n_games, int doors)
 {
     int game;
     char **games;
 
-    games = (char**)malloc(sizeof(char*) * n_games);
+    games = (char**)malloc(sizeof(char *) * n_games * doors);
     if (games == NULL) {
         fail("cannot allocate memory for games");
     }
@@ -97,13 +108,19 @@ char **init_games(int n_games, int doors)
     return games;
 }
 
+void free_games(char **games, int n_games)
+{
+    int game;
+
+    for (game = 0; game < n_games; game++) {
+        free(games[game]);
+    }
+    free(games);
+}
+
 void fail(char *msg)
 {
     fprintf(stderr, "%s\n", msg);
     exit(EXIT_FAILURE);
 }
 
-int random_number(int min_in, int max_ex)
-{
-    return rand() % (max_ex - min_in) + min_in;
-}
