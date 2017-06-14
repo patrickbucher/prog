@@ -1,2 +1,0 @@
-- calculate password strength
-- multiply two matrices
