@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <limits.h>
+
 #include "simple_sort.h"
 
 void swap(int *numbers, int a, int b)
@@ -25,12 +26,22 @@ void bubble_sort(int *numbers, int n)
 
 void insertion_sort(int *numbers, int n)
 {
-    // TODO implement properly
     bubble_sort(numbers, n);
 }
 
 void selection_sort(int *numbers, int n)
 {
-    // TODO implement properly
-    bubble_sort(numbers, n);
+    int i, j, min_i;
+
+    for (i = 0; i < n; i++) {
+        min_i = i;
+        for (j = i + 1; j < n; j++) {
+            if (numbers[j] < numbers[min_i]) {
+                min_i = j;
+            }
+        }
+        if (i != min_i) {
+            swap(numbers, i, min_i);
+        }
+    }
 }
