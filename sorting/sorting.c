@@ -5,13 +5,9 @@
 #include <time.h>
 
 #include "simple_sort.h"
+#include "sort_utils.h"
 
-bool is_sorted(int *, int);
-
-int *random_numbers(int, int, int);
-int random_number(int, int);
-
-#define SIZE 30000
+#define SIZE 10000
 #define MIN 1
 #define MAX 100000
 
@@ -21,16 +17,24 @@ int main()
     int *bubble, *insertion, *selection;
     size_t size;
     clock_t start, end;
-    double bubble_diff, insertion_diff, selection_diff;;
+    double bubble_diff, insertion_diff, selection_diff;
 
     srand((unsigned int)time(NULL));
 
     // create a random array and three copies of it
     numbers = random_numbers(SIZE, MIN, MAX);
+    if (numbers == NULL) {
+        fprintf(stderr, "cannot allocated %d numbers\n", SIZE);
+        exit(EXIT_FAILURE);
+    }
     size = sizeof(int) * SIZE;
     bubble = (int *)malloc(size);
     insertion = (int *)malloc(size);
     selection = (int *)malloc(size);
+    if (bubble == NULL || insertion == NULL || selection == NULL) {
+        fprintf(stderr, "cannot allocated %d numbers\n", SIZE);
+        exit(EXIT_FAILURE);
+    }
     for (i = 0; i < SIZE; i++) {
         bubble[i] = insertion[i] = selection[i] = numbers[i];
     }
@@ -69,38 +73,10 @@ int main()
     printf("%4.0fms %8.0fms   %5.0fms\n",
         bubble_diff, insertion_diff, selection_diff);
 
+    free(numbers);
+    free(bubble);
+    free(insertion);
+    free(selection);
+
     return 0;
-}
-
-bool is_sorted(int *numbers, int n) {
-    int i, last, current;
-
-    last = *numbers;
-    for (i = 1; i < n; i++) {
-        numbers++;
-        current = *numbers;
-        if (last > current) {
-            return false;
-        }
-        last = current;
-    }
-
-    return true;
-}
-
-int *random_numbers(int n, int min_in, int max_ex)
-{
-    int *numbers, i;
-    
-    numbers = (int*)malloc(sizeof(int) * n);
-    for (i = 0; i < n; i++) {
-        numbers[i] = random_number(min_in, max_ex);
-    }
-
-    return numbers;
-}
-
-int random_number(int min_in, int max_ex)
-{
-    return rand() % (max_ex - min_in) + min_in;
 }

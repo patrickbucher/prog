@@ -1,4 +1,4 @@
-#include <limits.h>
+#include <stdbool.h>
 
 #include "simple_sort.h"
 
@@ -14,11 +14,14 @@ void swap(int *numbers, int a, int b)
 void bubble_sort(int *numbers, int n)
 {
     int i, j;
+    bool sorted = false;
 
-    for (i = 0; i < n; i++) {
-        for (j = i + 1; j < n; j++) {
-            if (numbers[j] < numbers[i]) {
+    for (i = 0; !sorted && i < n; i++) {
+        sorted = true;
+        for (j = 0; j < n; j++) {
+            if (numbers[i] < numbers[j]) {
                 swap(numbers, i, j);
+                sorted = false;
             }
         }
     }
@@ -26,7 +29,13 @@ void bubble_sort(int *numbers, int n)
 
 void insertion_sort(int *numbers, int n)
 {
-    bubble_sort(numbers, n);
+    int i, j;
+
+    for (i = 0; i < n - 1; i++) {
+        for (j = i + 1; j > 0 && numbers[j] < numbers[j - 1]; j--) {
+            swap(numbers, j, j - 1);
+        }
+    }
 }
 
 void selection_sort(int *numbers, int n)
