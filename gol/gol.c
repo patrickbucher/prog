@@ -36,11 +36,14 @@ int main()
                 }
             }
             // initialize a glider
-            old[1] = ALIVE;
-            old[1 * COLS + 2] = ALIVE;
-            old[2 * COLS] = ALIVE;
+            old[2] = ALIVE;
+            old[1 * COLS + 3] = ALIVE;
             old[2 * COLS + 1] = ALIVE;
             old[2 * COLS + 2] = ALIVE;
+            old[2 * COLS + 3] = ALIVE;
+
+            // ...and one extra cell
+            old[3 * COLS + 4] = ALIVE;
         }
         printf("  0 1 2 3 4 5 6 7 8 9\n");
         for (i = 0; i < ROWS; i++) {
