@@ -57,10 +57,12 @@ int main()
             for (j = 0; j < COLS; j++) {
                 neighbours = neighbours_alive(old, i, j);
                 pos = i * COLS + j;
+                /*
                 if (neighbours > 0 || old[pos] == ALIVE) {
                     printf("[%d][%d] is %s and has %d alive neighbours\n",
                         i, j, old[pos] == ALIVE ? "alive" : "dead", neighbours);
                 }
+                */
                 switch (old[pos]) {
                 case DEAD:
                     if (neighbours == 3) {
