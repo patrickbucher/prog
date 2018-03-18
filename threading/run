@@ -1,0 +1,4 @@
+#!/bin/sh
+
+make sum
+./sum 2100000000
