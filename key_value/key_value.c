@@ -38,7 +38,7 @@ struct key_value
     for (i = 0; i < len && str[i] != '=' && str[i] != '\0'; i++) {
         kv->key[i] = str[i];
     }
-    i++; // skip =
+    kv->key[i++] = '\0';
     kv->value = 0;
     for (; str[i] != '\0' && str[i] >= '0' && str[i] <= '9'; i++) { 
         kv->value *= 10;
