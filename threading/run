@@ -1,4 +1,0 @@
-#!/bin/sh
-
-make sum
-./sum 200000000
