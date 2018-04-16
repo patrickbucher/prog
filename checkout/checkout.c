@@ -19,6 +19,7 @@ main(int argc, char *argv[])
 {
     float due, paid, change;
 
+    srand(time(NULL));
     while (1) {
         due = random_amount(MAX_AMOUNT, SMALLEST_UNIT);
         paid = amount_pay(due);
@@ -34,19 +35,23 @@ main(int argc, char *argv[])
         putchar('\n');
     }
 
-    srand(time(NULL));
     return 0;
 }
 
 float
 random_amount(int max, float smallest_unit)
 {
+    assert(max >= smallest_unit);
+
     int factor, n_units;
     float result;
 
     factor = 1 / smallest_unit;
     n_units = rand() % (factor * max);
     result = (float)n_units / factor;
+
+    // result must be dividable by smallest_unit
+    assert((int)(max * factor) % (int)(smallest_unit * factor) == 0);
 
     return result;
 }
