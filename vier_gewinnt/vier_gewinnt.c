@@ -18,9 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdio.h>
 #include <stdlib.h>
-
-#define TRUE 1
-#define FALSE 0
+#include <stdbool.h>
 
 char *initializeField();
 void printField(char *field, _Bool withHeader);
@@ -45,10 +43,10 @@ const int VICTORY = 4;
 int main(void) {
     int input = 0, player = 2, counter = 0;
     char stone = FIELD_EMPTY;
-    _Bool won = FALSE;
+    _Bool won = false;
     char *field = initializeField(ROWS, COLS, FIELD_EMPTY);
     system("clear"); // UNIX only (Windows: "cls")
-    printField(field, TRUE);
+    printField(field, true);
     while (!won && counter < ROWS * COLS) {
         player = switchPlayer(player);
         stone = getStone(player);
@@ -57,7 +55,7 @@ int main(void) {
         } while (!putStone(field, stone, input));
         counter++;
         system("clear"); // UNIX only (Windows: "cls")
-        printField(field, TRUE);
+        printField(field, true);
         if (counter >= VICTORY * 2 - 1)
             won = hasWon(field, stone);
     }
@@ -102,10 +100,10 @@ _Bool putStone(char *field, char stone, int col) {
         try = (row - 1) * COLS + col - 1;
         if (field[try] == FIELD_EMPTY) {
             field[try] = stone;
-            return TRUE;
+            return true;
         }
     }
-    return FALSE;
+    return false;
 }
 
 int switchPlayer(int player) {
@@ -149,11 +147,11 @@ _Bool hasRow(char *field, char stone) {
             else
                 counter = 0;
             if (counter == VICTORY)
-                return TRUE;
+                return true;
         }
         counter = 0;
     }
-    return FALSE;
+    return false;
 }
 
 _Bool hasCol(char *field, char stone) {
@@ -165,11 +163,11 @@ _Bool hasCol(char *field, char stone) {
             else
                 counter = 0;
             if (counter == VICTORY)
-                return TRUE;
+                return true;
         }
         counter = 0;
     }
-    return FALSE;
+    return false;
 }
 
 _Bool hasCross(char *field, char stone) {
@@ -184,7 +182,7 @@ _Bool hasCross(char *field, char stone) {
                 else
                     break;
                 if (counter == VICTORY)
-                    return TRUE;
+                    return true;
             }
             counter = 0;
         }
@@ -199,11 +197,11 @@ _Bool hasCross(char *field, char stone) {
                 else
                     break;
                 if (counter == VICTORY)
-                    return TRUE;
+                    return true;
             }
             counter = 0;
         }
     }
-    return FALSE;
+    return false;
 }
 
